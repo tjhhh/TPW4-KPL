@@ -1,6 +1,9 @@
-bin/
-obj/
-*.user
-*.suo
-*.exe
-*.dll
+from scapy.all import *
+ip = IP(dst="1.1.1.1")
+udp = UDP(dport=53)
+dns = DNS(qd=DNSQR(qname="google.com"))
+req = ip/udp/dns
+req.show()
+ans = sr1(req)
+ans.show()
+print (ans[DNSRR].rdata)
